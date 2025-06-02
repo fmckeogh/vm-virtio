@@ -3,8 +3,14 @@
 
 include!(concat!(env!("OUT_DIR"), "/virtio_net.rs"));
 
-use std::fmt::{Debug, Formatter, Result};
-use std::mem::{size_of, transmute};
+use core::fmt::{Debug, Formatter, Result};
+use core::mem::{size_of, transmute};
+
+#[cfg(test)]
+extern crate alloc;
+
+#[cfg(test)]
+use alloc::format;
 
 impl Debug for virtio_net_hdr_v1 {
     fn fmt(&self, f: &mut Formatter) -> Result {

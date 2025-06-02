@@ -12,6 +12,7 @@ fn generate_bindings(header: &str) {
         .derive_partialeq(true)
         .clang_arg("-Iinclude")
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
+        .use_core()
         .generate()
         .unwrap_or_else(|_| panic!("Unable to generate bindings for {header}"));
 
